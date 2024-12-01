@@ -23,7 +23,7 @@ public class Main {
 		}
 
 
-		System.out.println("Result: " + distance);
+		System.out.println("Round One Result: " + distance);
 	}
 
 	static void solutionTwo() {
@@ -57,11 +57,11 @@ public class Main {
 			score += cache.get(x);
 		}
 
-		System.out.println("Result: " + score);
+		System.out.println("Round Two Result: " + score);
 	}
 
     public static void main(String[] args) {
-//    	solutionOne();
+    	solutionOne();
 		solutionTwo();
     }
 
