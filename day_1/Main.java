@@ -16,16 +16,20 @@ public class Main {
 			right.add(Integer.parseInt(parts[1]));
 		}
 
-		System.out.println("Left side: " + left);
-		System.out.println("Right side: " + right);
-
-		System.out.println("Sorting...\n");
-
 		Collections.sort(left);
 		Collections.sort(right);
 
-		System.out.println("Left side: " + left);
-		System.out.println("Right side: " + right);
+		int distance = 0;
+		for (int i = 0; i < left.size(); i++){
+			distance += Math.abs(left.get(i) - right.get(i));
+		}
+
+		if (distance == 11) {
+			System.out.println("Success");
+			return;
+		}
+
+		System.out.println("Failure. Result: " + distance);
 	}
     
     public static void main(String[] args) {
