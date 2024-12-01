@@ -1,6 +1,4 @@
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class Main {
 	static void solutionOne() {
@@ -27,10 +25,55 @@ public class Main {
 
 		System.out.println("Result: " + distance);
 	}
-    
+
+	static void solutionTwo() {
+		String input = getTestInput();
+		String[] lines = input.split("\n");
+
+		List<Integer> left = new ArrayList<>();
+		List<Integer> right = new ArrayList<>();
+
+		for (int i = 0; i < lines.length; i++) {
+			String[] parts = lines[i].trim().split("\\s+");
+			left.add(Integer.parseInt(parts[0]));
+			right.add(Integer.parseInt(parts[1]));
+		}
+
+		int score = 0;
+		Map<Integer, Integer> cache = new HashMap<Integer, Integer>();
+		for (int i = 0; i < left.size(); i++){
+			int x = left.get(i);
+			if (cache.containsKey(x)){
+				score += cache.get(x);
+				continue;
+			}
+
+			int apearence = 0;
+			for (int j = 0; j < right.size(); j++){
+				int y = right.get(j);
+				if (y == x) apearence++;
+			}
+			cache.put(x, apearence * x);
+			score += cache.get(x);
+		}
+
+		System.out.println("Result: " + score);
+	}
+
     public static void main(String[] args) {
-    	solutionOne();	
+//    	solutionOne();
+		solutionTwo();
     }
+
+	public static String getTestInput() {
+		return "3   4\n" +
+				"4   3\n" +
+				"2   5\n" +
+				"1   3\n" +
+				"3   9\n" +
+				"3   3";
+	}
+
 
 	public static String getInput() {
 		return "17113   23229\n" +
