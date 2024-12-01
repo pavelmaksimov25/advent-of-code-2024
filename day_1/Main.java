@@ -27,7 +27,7 @@ public class Main {
 	}
 
 	static void solutionTwo() {
-		String input = getTestInput();
+		String input = getInput();
 		String[] lines = input.split("\n");
 
 		List<Integer> left = new ArrayList<>();
