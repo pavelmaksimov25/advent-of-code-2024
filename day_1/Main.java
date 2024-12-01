@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Main {
@@ -14,6 +15,14 @@ public class Main {
 			left.add(Integer.parseInt(parts[0]));
 			right.add(Integer.parseInt(parts[1]));
 		}
+
+		System.out.println("Left side: " + left);
+		System.out.println("Right side: " + right);
+
+		System.out.println("Sorting...\n");
+
+		Collections.sort(left);
+		Collections.sort(right);
 
 		System.out.println("Left side: " + left);
 		System.out.println("Right side: " + right);
