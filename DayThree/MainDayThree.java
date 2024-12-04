@@ -9,12 +9,6 @@ public class MainDayThree {
         String[] lines = input.split("\n");
         int score = 0;
 
-        // Plan
-        // 1. use regex to find matches Done!
-        // 2. extract two numbers separated by comma.
-        // 3. multiply
-        // 4. write result to a variable
-
         for (String line : lines) {
             List<String> parsedLine = parseLine(line);
             for (String entry : parsedLine) {
@@ -27,10 +21,42 @@ public class MainDayThree {
             }
         }
         System.out.println("Actual result: " + score);
-        System.out.println("Expected result: 161");
     }
 
     static void solutionTwo() {
+        String input = getTestInputTwo();
+        String[] lines = input.split("don't\\(\\)");
+        int score = 0;
+
+        int lineCounter = 0;
+        for (String line : lines) {
+            List<String> parsedLine = parseLine(line);
+            if (lineCounter == 0) { // first line always in
+                for (String entry : parsedLine) {
+                    List<Integer>numbers = extractNumbers(entry);
+                    if (numbers.size() != 2) {
+                        continue;
+                    }
+
+                    score += numbers.get(0) * numbers.get(1);
+                }
+                lineCounter++;
+                continue;
+            }
+
+            String[] dontsAndDos = line.split("do\\(\\)");
+
+            for (int i = 1; i < dontsAndDos.length; i+=2) {
+                System.out.println("dos: " + dontsAndDos[i]);
+                List<Integer>numbers = extractNumbers(dontsAndDos[i]);
+                if (numbers.size() != 2) {
+                    continue;
+                }
+
+                score += numbers.get(0) * numbers.get(1);
+            }
+        }
+        System.out.println("Actual result: " + score);
     }
     static List<String> parseLine(String line) {
         List<String> result = new ArrayList<>();
@@ -43,6 +69,14 @@ public class MainDayThree {
         }
 
         return result;
+    }
+
+    /**
+     * Each line can contain `do` and `don't`. Consider them as a {}.
+     * Only data between {} should be extracted.
+     */
+    static List<String> parseLineWithScopes(String line) {
+        return new ArrayList<>();
     }
 
     static List<Integer> extractNumbers(String input) {
@@ -68,12 +102,16 @@ public class MainDayThree {
     }
 
     public static void main(String[] args) {
-        solutionOne();
-//        solutionTwo();
+//        solutionOne();
+        solutionTwo();
     }
 
     public static String getTestInput() {
         return "xmul(2,4)%&mul[3,7]!@^do_not_mul(5,5)+mul(32,64]then(mul(11,8)mul(8,5))\n";
+    }
+
+    public static String getTestInputTwo() {
+        return "xmul(2,4)&mul[3,7]!^don't()_mul(5,5)+mul(32,64](mul(11,8)undo()?mul(8,5))\n";
     }
 
 
