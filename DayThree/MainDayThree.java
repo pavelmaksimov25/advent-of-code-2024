@@ -24,38 +24,42 @@ public class MainDayThree {
     }
 
     static void solutionTwo() {
-        String input = getTestInputTwo();
-        String[] lines = input.split("don't\\(\\)");
+        String input = getInput();
+        String[] lines = input.split("\n");
         int score = 0;
 
-        int lineCounter = 0;
         for (String line : lines) {
-            List<String> parsedLine = parseLine(line);
-            if (lineCounter == 0) { // first line always in
-                for (String entry : parsedLine) {
-                    List<Integer>numbers = extractNumbers(entry);
+            String[] subLines = line.split("don't\\(\\)");
+
+            int lineCounter = 0;
+            for (String subLine : subLines) {
+                List<String> parsedLine = parseLine(subLine);
+                if (lineCounter == 0) { // first line always in
+                    for (String entry : parsedLine) {
+                        List<Integer>numbers = extractNumbers(entry);
+                        if (numbers.size() != 2) {
+                            continue;
+                        }
+
+                        score += numbers.get(0) * numbers.get(1);
+                    }
+                    lineCounter++;
+                    continue;
+                }
+
+                String[] dontsAndDos = subLine.split("do\\(\\)");
+
+                for (int i = 1; i < dontsAndDos.length; i+=2) {
+                    List<Integer>numbers = extractNumbers(dontsAndDos[i]);
                     if (numbers.size() != 2) {
                         continue;
                     }
 
                     score += numbers.get(0) * numbers.get(1);
                 }
-                lineCounter++;
-                continue;
-            }
-
-            String[] dontsAndDos = line.split("do\\(\\)");
-
-            for (int i = 1; i < dontsAndDos.length; i+=2) {
-                System.out.println("dos: " + dontsAndDos[i]);
-                List<Integer>numbers = extractNumbers(dontsAndDos[i]);
-                if (numbers.size() != 2) {
-                    continue;
-                }
-
-                score += numbers.get(0) * numbers.get(1);
             }
         }
+
         System.out.println("Actual result: " + score);
     }
     static List<String> parseLine(String line) {
