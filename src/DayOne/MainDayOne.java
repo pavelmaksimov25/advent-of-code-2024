@@ -1,6 +1,8 @@
+package DayOne;
+
 import java.util.*;
 
-public class Main {
+public class MainDayOne {
 	static void solutionOne() {
 		String input = getInput();
 		String[] lines = input.split("\n");
