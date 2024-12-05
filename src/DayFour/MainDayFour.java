@@ -9,12 +9,35 @@ public class MainDayFour {
     static void roundOne() {
         String input = getTestInput();
         String[] lines = input.split("\n");
+        int score = 0;
+        for (int i = 0; i < lines.length; i++) {
+            for (int j = 0; j < lines[i].length(); j++) {
+                if (lines[i].charAt(j) == 'X') {
+                    score += findXmas(i, j, lines);
+                }
+            }
+        }
 
-        System.out.println(lines[0]);
+        System.out.println("score is: " + score);
     }
 
     static void roundTwo() {
         String input = getTestInput();
+    }
+
+    private static int findXmas(int i, int j, String[] lines) {
+        // horizontal left to right
+        try {
+            if (lines[i].charAt(j) == 'X' && lines[i].charAt(j + 1) == 'M' && lines[i].charAt(j + 2) == 'A' && lines[i].charAt(j + 3) == 'S') {
+                System.out.println("XMAS");
+
+                return 1;
+            }
+        } catch (Exception e) {
+            System.out.println("fail");
+        }
+
+        return 0;
     }
 
     public static void main(String[] args) {
