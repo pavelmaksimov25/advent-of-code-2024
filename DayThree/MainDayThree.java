@@ -84,14 +84,6 @@ public class MainDayThree {
         return result;
     }
 
-    /**
-     * Each line can contain `do` and `don't`. Consider them as a {}.
-     * Only data between {} should be extracted.
-     */
-    static List<String> parseLineWithScopes(String line) {
-        return new ArrayList<>();
-    }
-
     static List<Integer> extractNumbers(String input) {
         System.out.println("before extraction: " + input);
         // Regex pattern to match `mul(x,y)` and capture x and y
