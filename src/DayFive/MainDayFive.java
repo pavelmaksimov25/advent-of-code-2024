@@ -2,7 +2,7 @@ package DayFive;
 
 import java.util.*;
 
-public class MainDayOne {
+public class MainDayFive {
     static class Rule {
         int x, y;
 
