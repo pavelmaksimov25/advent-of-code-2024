@@ -45,6 +45,7 @@ public class Main {
         System.out.println("steps: " + steps);
     }
 
+    // wrong solution because it can take wrong obstruction
     private static Position nextPosition(Position pos, List<Position> obstructions, int direction) {
         System.out.println("direction: " + direction);
         if (direction == 0) {
